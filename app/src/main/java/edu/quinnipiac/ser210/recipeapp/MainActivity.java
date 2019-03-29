@@ -27,7 +27,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
+//created By Giovanni Greco
 public class MainActivity extends AppCompatActivity {
     //instance variables
     private String url = "https://matchilling-chuck-norris-jokes-v1.p.rapidapi.com/jokes/random";//full url string
@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
         //formatting
         public String getFoodFact(String yearFactJsonStr) throws JSONException {
             JSONObject yearFactJSONObj = new JSONObject(yearFactJsonStr);
-            return yearFactJSONObj.getString("text");
+            return yearFactJSONObj.getString("value"); // specified retreiving value
         }
 
     }

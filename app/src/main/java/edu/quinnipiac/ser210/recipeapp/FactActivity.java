@@ -73,7 +73,7 @@ public class FactActivity extends AppCompatActivity {
         }
     }
     public void switchActivityBackground(boolean background) {
-        ConstraintLayout factLayout = (ConstraintLayout) findViewById(R.id.facts);
+        ConstraintLayout factLayout = (ConstraintLayout) findViewById(R.id.UI);
         if(background) factLayout.setBackgroundResource(R.drawable.chuck2);
 
         else factLayout.setBackgroundResource(R.drawable.chuck3);
