@@ -4,6 +4,8 @@ import android.content.Intent;
 
 import android.os.AsyncTask;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.support.v7.widget.ShareActionProvider;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +32,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 //created By Giovanni Greco
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainFragment.FactListener {
     //instance variables
     private String url = "https://matchilling-chuck-norris-jokes-v1.p.rapidapi.com/jokes/random";//full url string
     private ShareActionProvider provider;
@@ -38,10 +42,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.v("msg", " running on create MainActivity");
+
+
 
         //instantiates toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -88,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
     }
     //creates instsnce of UI layout and changes background image based on boolean param
     public void switchActivityBackground(boolean background) {
-        ConstraintLayout mainLayout = (ConstraintLayout) findViewById(R.id.mainLayout);
+        FrameLayout mainLayout = (FrameLayout) findViewById(R.id.MainFrag);
         if(background) mainLayout.setBackgroundResource(R.drawable.chuck2);
 
         else mainLayout.setBackgroundResource(R.drawable.chuck);
@@ -96,6 +104,25 @@ public class MainActivity extends AppCompatActivity {
 
 
         Log.v("background image", "should change");
+    }
+
+
+
+    @Override
+    public void buttonClickedMoveToDetail() {
+       /* View fragmentContainer = findViewById(R.id.MainFrag);
+        if (fragmentContainer != null) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            FactFragment factFragment = new FactFragment();
+
+            ft.replace(R.id.MainFrag,factFragment);
+            ft.addToBackStack(null);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            ft.commit();
+
+
+        }
+        */
     }
 
 
@@ -166,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String result){
             super.onPostExecute(result);
                 //creates intent to switch activities and sends API response to new activity
-                Intent intent = new Intent(MainActivity.this,FactActivity.class);
+                Intent intent = new Intent(MainActivity.this,FactFragment.class);
                 intent.putExtra("food fact",result);
                 startActivity(intent);
 

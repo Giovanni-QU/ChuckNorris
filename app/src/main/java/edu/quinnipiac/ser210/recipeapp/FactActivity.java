@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,13 +28,15 @@ public class FactActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fact);
+        FactFragment frag = (FactFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_fact);
+
         //creates toolbar-repetitive code?
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         fact = (TextView)findViewById(R.id.factText);
         String foodFact = (String)getIntent().getExtras().get("food fact");
         fact.setText(foodFact);
-
+        frag.setText(foodFact);
     }
     //toolbar methods, ultimately the same as in MainActivity, see comments in MainActivity for details
     @Override
@@ -73,13 +76,13 @@ public class FactActivity extends AppCompatActivity {
         }
     }
     public void switchActivityBackground(boolean background) {
-        ConstraintLayout factLayout = (ConstraintLayout) findViewById(R.id.UI);
+        LinearLayout factLayout = (LinearLayout) findViewById(R.id.facts);
         if(background) factLayout.setBackgroundResource(R.drawable.chuck2);
 
         else factLayout.setBackgroundResource(R.drawable.chuck3);
 
 
 
-        Log.v("background color", "should change");
+        Log.v("background image", "should change");
     }
 }
