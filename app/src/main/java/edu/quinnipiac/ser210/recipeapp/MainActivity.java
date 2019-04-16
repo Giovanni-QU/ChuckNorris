@@ -65,9 +65,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Fact
         provider = (ShareActionProvider) MenuItemCompat.getActionProvider(shareItem);
         return super.onCreateOptionsMenu(menu);
     }
-    public void onClick(View view) {
-        new getFoodFact().execute(url);
-    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -77,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Fact
                 if(background) background = false; //toggles background image
                 else background = true;
                 //calls method to handle actual UI background change
-                switchActivityBackground(background);
+               switchActivityBackground(background);
 
                 return  true;
             case R.id.help:
@@ -94,9 +92,12 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Fact
                 return super.onOptionsItemSelected(item);
         }
     }
+
     //creates instsnce of UI layout and changes background image based on boolean param
     public void switchActivityBackground(boolean background) {
-        FrameLayout mainLayout = (FrameLayout) findViewById(R.id.MainFrag);
+
+
+        FrameLayout mainLayout = (FrameLayout) findViewById(R.id.mainLayout);
         if(background) mainLayout.setBackgroundResource(R.drawable.chuck2);
 
         else mainLayout.setBackgroundResource(R.drawable.chuck);
@@ -106,23 +107,10 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Fact
         Log.v("background image", "should change");
     }
 
-
-
     @Override
-    public void buttonClickedMoveToDetail() {
-       /* View fragmentContainer = findViewById(R.id.MainFrag);
-        if (fragmentContainer != null) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            FactFragment factFragment = new FactFragment();
-
-            ft.replace(R.id.MainFrag,factFragment);
-            ft.addToBackStack(null);
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-            ft.commit();
-
-
-        }
-        */
+    public void buttonClickedMoveToFact(View view) {
+        Log.v("msg", "MainActivity onClick");
+        new getFoodFact().execute(url);
     }
 
 
@@ -193,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Fact
         protected void onPostExecute(String result){
             super.onPostExecute(result);
                 //creates intent to switch activities and sends API response to new activity
-                Intent intent = new Intent(MainActivity.this,FactFragment.class);
+                Intent intent = new Intent(MainActivity.this,FactActivity.class);
                 intent.putExtra("food fact",result);
                 startActivity(intent);
 

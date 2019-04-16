@@ -13,22 +13,23 @@ import android.widget.TextView;
 
 
 public class FactFragment extends Fragment {
-    TextView fact;
+
     public FactFragment(){
 
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.v("msg", " running on create view");
+        Log.v("Fact Frag", " running on create view");
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_fact, container, false);
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View view = getView();
-         fact = (TextView)view.findViewById(R.id.factText);
+        Log.v("Fact Frag", " running on create view");
+            //View view = getView();
+        // fact = (TextView)view.findViewById(R.id.factText);
     }
 
     @Override
@@ -38,9 +39,5 @@ public class FactFragment extends Fragment {
 
 
     }
-    public void setText(String text){
-        //sets the text of the textview in fragment
-        fact.setText(text);
 
-    }
 }

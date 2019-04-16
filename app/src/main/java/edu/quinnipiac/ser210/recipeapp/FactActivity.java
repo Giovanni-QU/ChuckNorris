@@ -2,7 +2,6 @@ package edu.quinnipiac.ser210.recipeapp;
 
 
 import android.content.Intent;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,7 +35,7 @@ public class FactActivity extends AppCompatActivity {
         fact = (TextView)findViewById(R.id.factText);
         String foodFact = (String)getIntent().getExtras().get("food fact");
         fact.setText(foodFact);
-        frag.setText(foodFact);
+
     }
     //toolbar methods, ultimately the same as in MainActivity, see comments in MainActivity for details
     @Override
